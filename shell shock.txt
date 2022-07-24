@@ -1,0 +1,61 @@
+Shell Shock 
+
+---------------------------------------------------------
+How it occurs ? 
+
+through shell we can set environment variables
+
+Through abusing the environment function , we can execute arbitary command in bash shell
+
+---------------------------------------------------------
+
+ APPLICATIONS
+
+ SHELL
+
+ KERNEL
+ 
+ HARDWARE
+
+----------------------------------------------------------
+
+Environment variable
+
+$SHELL
+
+$HOME
+
+we can set our own env variable through export command
+we can see all the env variables through env command
+
+----------------------------------------------------------
+env t=4 bash -c 'echo$t'
+>4
+
+
+shell shock vuln
+
+env t='4;echo hack' bash -c 'echo$t'
+> 4;echo hack
+
+
+----------------------------------------------------------
+function in bash
+
+x()
+{
+echo "hello";
+}
+
+alternate:
+
+env x= '(){echo"hello";}'
+
+we can replace this with a colen for make this function empty!!
+
+env x='(){:;}'
+
+with this empty function we can set an env variable and call that to get executed
+
+-t '(){ :;};#command'
+
